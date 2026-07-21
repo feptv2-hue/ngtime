@@ -1,0 +1,403 @@
+{
+    "providers": [
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/a1member.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["Ǖ"]
+	},
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/a2player.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ǖ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/a3novice.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["Ꞁ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/b1friend.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["¤"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/b2amigo.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["Ð"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/b3buddy.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["℥"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c1vip.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ℶ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c2mvp.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ℷ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c3dreamer.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ℸ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c4elite.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ⅇ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c5hero.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⅊"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c6champion.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⚍"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c7knight.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⚎"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c8kronos.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⚏"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c9legend.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⚭"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c10master.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⚮"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c11overlord.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⏔"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c12platinum.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⏕"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c13poseidon.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⏙"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c14princess.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶀ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c15spartan.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶁ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c16titan.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶂ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c17ultra.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶃ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c18veteran.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶄ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c19warrior.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶆ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/c20supporter.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶇ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d1coal.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶈ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d2copper.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶉ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d3iron.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶊ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d4gold.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶋ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d5lapis.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶌ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d6redstone.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶍ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d7diamond.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["ᶎ"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d8emerald.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["↜"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d9netherite.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["↝"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d10quartz.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["↭"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/d11amethyst.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍋"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e1helper.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍎"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e2helper.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍏"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e3helper.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍑"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e4moderator.png",
+            "ascent": 8,
+            "height": 48,
+            "chars": ["⍒"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e5moderator.png",
+            "ascent": 8,
+            "height": 30,
+            "chars": ["⍕"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e6moderator.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍖"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e7builder.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍘"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e8builder.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍙"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e9builder.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍚"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e10developer.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍛"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e11developer.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍜"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/e12developer.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍝"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/f1youtuber.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍞"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/f2streamer.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍠"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/g1admin.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍟"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/g2manager.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍡"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/g3leader.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍢"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/h1founder.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⊗","⊙","⊛","⊚","⊠","◆","⊞"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/h2boss.png",
+            "ascent": 8,
+            "height": 9,
+            "chars": ["⍤"]
+        },
+        {
+            "type": "bitmap",
+            "file": "minecraft:ranks/h3owner.png",
+            "ascent": 8,
+            "height": 512,
+            "chars": ["⍥"]
+        }
+    ]
+}
