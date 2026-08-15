@@ -131,7 +131,7 @@ func equip_unit_to_slot(slot_number: int, slot_button: Button) -> void:
 	else:
 		print("Слот ", slot_number, " нажат, но юнит для установки не выб")
 func clear_specific_slot(slot_button: Button) -> void:
-	slot_button.text = "" # Делаем текст снова пустым, как при старте игры
+	slot_button.text = "Пусто" # Делаем текст снова пустым, как при старте игры
 	
 	# Ищем крестик внутри кнопки и СКРЫВАЕМ его
 	if slot_button.has_node("RemoveButton"):
@@ -176,20 +176,21 @@ func _on_slot_6_pressed() -> void:
 	equip_unit_to_slot(6, $BottomPanel/MarginContainer/UnitSlotsContainer/Slot6)
 
 
-func _on_slot_1_remove_pressed() -> void:
+func _on_remove_1_button_pressed() -> void:
 	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot1)
+	print("Выбор слота отменен игроком.")
 
-func _on_slot_2_remove_pressed() -> void:
+func _on_remove_2_remove_pressed() -> void:
 	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot2)
 
-func _on_slot_3_remove_pressed() -> void:
+func _on_remove_3_remove_pressed() -> void:
 	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot3)
 
-func _on_slot_4_remove_pressed() -> void:
+func _on_remove_4_remove_pressed() -> void:
 	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot4)
 
-func _on_slot_5_remove_pressed() -> void:
+func _on_remove_5_remove_pressed() -> void:
 	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot5)
 
-func _on_slot_6_remove_pressed() -> void:
+func _on_remove_6_remove_pressed() -> void:
 	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot6)
