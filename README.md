@@ -108,24 +108,36 @@ func select_unit_for_deck(unit_name: String) -> void:
 
 
 
+# --- ОБНОВЛЕННАЯ ФУНКЦИЯ УСТАНОВКИ В СЛОТ ---
 func equip_unit_to_slot(slot_number: int, slot_button: Button) -> void:
 	if is_selecting_slot and selected_unit_to_equip != "":
 		slot_button.text = selected_unit_to_equip
 		print("Юнит ", selected_unit_to_equip, " успешно установлен в Слот ", slot_number)
 		
+		# Ищем крестик внутри этой кнопки слота и ПОКАЗЫВАЕМ его
+		if slot_button.has_node("RemoveButton"):
+			slot_button.get_node("RemoveButton").visible = true
+		
+		# Сбрасываем режимы и гасим фокус экрана
 		is_selecting_slot = false
 		selected_unit_to_equip = ""
-		
-		# ВЫКЛЮЧАЕМ затемнение экрана фокуса, юнит на месте!
 		slot_focus_scrim.visible = false
 		
-		# Возвращаем родной цвет фракции для слотов
+		# Возвращаем родной цвет фракции для контейнера слотов
 		if current_nation == "RU":
 			unit_slots_container.modulate = Color("556b2f")
 		elif current_nation == "US":
 			unit_slots_container.modulate = Color("4682b4")
 	else:
-		print("Слот ", slot_number, " нажат, но юнит для установки не выбран.")
+		print("Слот ", slot_number, " нажат, но юнит для установки не выб")
+func clear_specific_slot(slot_button: Button) -> void:
+	slot_button.text = "" # Делаем текст снова пустым, как при старте игры
+	
+	# Ищем крестик внутри кнопки и СКРЫВАЕМ его
+	if slot_button.has_node("RemoveButton"):
+		slot_button.get_node("RemoveButton").visible = false
+		
+	print("Слот успешно очищен.")
 
 
 # Эта функция мгновенно отменяет режим выбора слота и гасит подсветку
@@ -162,3 +174,22 @@ func _on_slot_5_pressed() -> void:
 
 func _on_slot_6_pressed() -> void:
 	equip_unit_to_slot(6, $BottomPanel/MarginContainer/UnitSlotsContainer/Slot6)
+
+
+func _on_slot_1_remove_pressed() -> void:
+	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot1)
+
+func _on_slot_2_remove_pressed() -> void:
+	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot2)
+
+func _on_slot_3_remove_pressed() -> void:
+	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot3)
+
+func _on_slot_4_remove_pressed() -> void:
+	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot4)
+
+func _on_slot_5_remove_pressed() -> void:
+	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot5)
+
+func _on_slot_6_remove_pressed() -> void:
+	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot6)
