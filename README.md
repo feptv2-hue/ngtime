@@ -18,7 +18,7 @@ func _ready() -> void:
 	nickname_label.text = "Игрок: " + player_name
 	elo_label.text = "ELO: " + str(player_elo)
 	slot_focus_scrim.visible = false
-	unit_slots_container.modulate = Color("8c8c8c")
+	unit_slots_container.modulate = Color("FFFFFF")
 	
 	# На всякий случай гарантируем в коде, что при старте окно технологий закрыто
 	tech_tree_panel.visible = false 
@@ -37,7 +37,26 @@ func _on_close_tech_button_pressed() -> void:
 	tech_tree_panel.visible = false # Снова скрываем панель
 
 func _on_button_pressed() -> void:
-	print("Кнопка 'Играть' нажата!")
+	print("Запуск матча! Сохраняем деку...")
+	
+	var slot1_text = $BottomPanel/MarginContainer/UnitSlotsContainer/Slot1.text
+	var slot2_text = $BottomPanel/MarginContainer/UnitSlotsContainer/Slot2.text
+	var slot3_text = $BottomPanel/MarginContainer/UnitSlotsContainer/Slot3.text
+	var slot4_text = $BottomPanel/MarginContainer/UnitSlotsContainer/Slot4.text
+	var slot5_text = $BottomPanel/MarginContainer/UnitSlotsContainer/Slot5.text
+	var slot6_text = $BottomPanel/MarginContainer/UnitSlotsContainer/Slot6.text
+	
+	# Стучимся к синглтону напрямую через корневое дерево движка:
+	var global = get_node("/root/GlobalData")
+	
+	if global:
+		global.current_deck = [slot1_text, slot2_text, slot3_text, slot4_text, slot5_text, slot6_text]
+		print("Дека успешно сохранена в GlobalData: ", global.current_deck)
+	else:
+		print("Ошибка: Движок всё еще не создал узел GlobalData!")
+		
+	get_tree().change_scene_to_file("res://scenes/game_world.tscn")
+
 
 #_on_techtree_pressed()
 func _on_techtree_pressed() -> void:
@@ -77,7 +96,7 @@ func _on_russia_pressed() -> void:
 	
 	print("Выбрана нация: Россия")
 	current_nation = "RU"
-	unit_slots_container.modulate = Color("556b2f")
+	unit_slots_container.modulate = Color("FFFFFF")
 	ru_tech_tree.visible = true
 	us_tech_tree.visible = false
 
@@ -88,7 +107,7 @@ func _on_usa_pressed() -> void:
 	
 	print("Выбрана нация: США")
 	current_nation = "US"
-	unit_slots_container.modulate = Color("4682b4")
+	unit_slots_container.modulate = Color("FFFFFF")
 	ru_tech_tree.visible = false
 	us_tech_tree.visible = true
 # Эту функцию автоматически вызовет ЛЮБАЯ карточка танка или вертолета при клике
@@ -125,9 +144,9 @@ func equip_unit_to_slot(slot_number: int, slot_button: Button) -> void:
 		
 		# Возвращаем родной цвет фракции для контейнера слотов
 		if current_nation == "RU":
-			unit_slots_container.modulate = Color("556b2f")
+			unit_slots_container.modulate = Color("FFFFFF")
 		elif current_nation == "US":
-			unit_slots_container.modulate = Color("4682b4")
+			unit_slots_container.modulate = Color("FFFFFF")
 	else:
 		print("Слот ", slot_number, " нажат, но юнит для установки не выб")
 func clear_specific_slot(slot_button: Button) -> void:
@@ -152,9 +171,9 @@ func cancel_slot_selection() -> void:
 		
 		# Возвращаем слотам правильный цвет текущей нации
 		if current_nation == "RU":
-			unit_slots_container.modulate = Color("556b2f")
+			unit_slots_container.modulate = Color("FFFFFF")
 		elif current_nation == "US":
-			unit_slots_container.modulate = Color("4682b4")
+			unit_slots_container.modulate = Color("FFFFFF")
 # Функции самих слотов, которые вызывают нашу универсальную команду:
 func _on_slot_1_pressed() -> void:
 	# Передаем номер слота и ссылку на саму кнопку слота
@@ -194,3 +213,97 @@ func _on_remove_5_remove_pressed() -> void:
 
 func _on_remove_6_remove_pressed() -> void:
 	clear_specific_slot($BottomPanel/MarginContainer/UnitSlotsContainer/Slot6)
+extends Node2D
+
+# Проверь, чтобы эти три пути точно вели к твоим узлам (можно перетащить с Ctrl)
+@onready var battle_slots_container: HBoxContainer = $CanvasLayer/UnitSpawnPanel/BattleSlotsContainer
+@onready var camera: Camera2D = $Camera2D
+
+var tank_scene = preload("res://scenes/tank.tscn")
+
+# Перечень ВСЕХ вертолетов в игре (для точной фильтрации HUD)
+var helicopter_list: Array[String] = [
+	"Ка-52 \"Аллигатор\"", 
+	"Ми-28Н \"Ночной охотник\"", 
+	"AH-64D Apache", 
+	"AH-1Z Viper"
+]
+
+func _ready() -> void:
+	print("Матч начался! Загружаем HUD боевого интерфейса...")
+	# При старте матча сразу показываем наземку из деки
+	refresh_spawn_hud("GROUND")
+
+
+func refresh_spawn_hud(category: String) -> void:
+	print("Обновляем HUD для категории: ", category)
+	
+	# 1. Полностью очищаем нижнюю панель от старых кнопок
+	for child in battle_slots_container.get_children():
+		child.queue_free()
+		
+	# Ждем один кадр, чтобы Godot физически удалил старые узлы из памяти
+	await get_tree().process_frame
+	
+	# Безопасно достаем синглтон через корень
+	var global = get_node("/root/GlobalData")
+	if not global:
+		print("Ошибка: GlobalData не найден в системе!")
+		return
+		
+	print("Текущая дека в памяти: ", global.current_deck)
+	
+	# 2. Пробегаемся по сохраненной деке и создаем новые кнопки нового дизайна
+		# 2. Пробегаемся по сохраненной деке и создаем новые кнопки нового дизайна
+	for unit_name in global.current_deck:
+		# ИГНОРИРУЕМ пустые слоты и слоты-заглушки со словом "Пусто"
+		if unit_name == "" or unit_name == "Пусто" or unit_name == "[ Пусто ]":
+			continue 
+
+			
+		# Проверяем, есть ли имя юнита в нашем списке вертолетов
+		var is_heli: bool = unit_name in helicopter_list
+		
+		# Фильтруем кнопки под выбранную вкладку HUD
+		if category == "GROUND" and is_heli:
+			continue # Если открыта наземка, вертолеты не создаем
+		if category == "HELI" and not is_heli:
+			continue # Если открыты вертолеты, танки не создаем
+			
+		# 3. Создаем НОВУЮ кнопку вызова (Твой новый дизайн плашек боя!)
+		var new_btn = Button.new()
+		new_btn.text = unit_name
+		new_btn.custom_minimum_size = Vector2(150, 100) # Пропорции кнопки в бою
+		
+		# Применяем Oswald, если он лежит в папке
+		if ResourceLoader.exists("res://assets/fonts/Oswald-Bold.ttf"):
+			var font = load("res://assets/fonts/Oswald-Bold.ttf")
+			new_btn.add_theme_font_override("font", font)
+			
+		# Настраиваем стиль кнопки нового дизайна (делаем её плоской или кастомной)
+		new_btn.flat = false # Можно сделать true, если хочешь плоские кнопки в бою
+		
+		# Связываем нажатие с физическим спавном на карте
+		new_btn.pressed.connect(func(): spawn_unit(unit_name))
+		
+		# Закидываем кнопку в боевой контейнер
+		battle_slots_container.add_child(new_btn)
+		print("Успешно добавлена кнопка в HUD боя: ", unit_name)
+
+
+# --- СИГНАЛЫ ПЕРЕКЛЮЧЕНИЯ ВКЛАДОК ЛЕВОЙ ПАНЕЛИ ---
+
+func _on_ground_cat_button_pressed() -> void:
+	refresh_spawn_hud("GROUND")
+
+func _on_heli_cat_button_pressed() -> void:
+	refresh_spawn_hud("HELI")
+
+
+# --- СПАВН ЮНИТА ПО ЦЕНТРУ КАМЕРЫ ---
+func spawn_unit(unit_type: String) -> void:
+	print("Вызываем на поле боя: ", unit_type)
+	var new_unit = tank_scene.instantiate()
+	new_unit.position = camera.position
+	add_child(new_unit)
+
